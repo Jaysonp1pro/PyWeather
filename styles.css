@@ -5,6 +5,13 @@ WeatherInfoDisplay {
     height: 5;
 }
 
-.Button {
-    content-align: center top;
+#locationLabel {
+    color: rgb(1, 158, 22);
+    background: red;
+
+    min-width: 20vw;
+    min-height: 20vh;
+
+    max-width: 20vw;
+    max-height: 20vh;
 }
