@@ -1,7 +1,7 @@
 from textual.app import App
 from textual.widgets import Button, Footer, Header, Static, Label
 from textual.theme import Theme
-from textual.containers import ScrollableContainer
+from textual.containers import ScrollableContainer, Container
 import time
 
 class TempDisplay(Static):
@@ -9,7 +9,6 @@ class TempDisplay(Static):
 
 class WeatherInfoDisplay(Static):
     def compose(self):
-        yield Label("Hello, world!", id="locationLabel")
         yield Button("Start", variant="success")
         yield Button("Stop", variant="warning")
         yield Button("Reset", variant="error")
@@ -22,10 +21,16 @@ class WeatherApp(App):
     def compose(self):
 
         yield Header(show_clock=True)
-        yield Footer()
 
-        with ScrollableContainer(id="WeatherInfoDisplay"):
-            yield WeatherInfoDisplay()
+        with Container(id="app-grid"):
+            with Container(id="left-side-container"):
+                yield Label("Hello, world!", id="locationLabel")
+
+            with Container(id="right-side-container"):
+                yield Label("idk lol")
+
+
+        yield Footer()
 
     def on_mount(self) -> None:
         pass
