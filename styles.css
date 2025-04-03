@@ -1,0 +1,10 @@
+WeatherInfoDisplay {
+    layout: horizontal;
+    min-width: 50;
+    padding: 1;
+    height: 5;
+}
+
+.Button {
+    content-align: center top;
+}
