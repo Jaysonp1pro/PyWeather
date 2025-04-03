@@ -1,5 +1,5 @@
 from textual.app import App
-from textual.widgets import Button, Footer, Header, Static
+from textual.widgets import Button, Footer, Header, Static, Label
 from textual.theme import Theme
 from textual.containers import ScrollableContainer
 import time
@@ -9,6 +9,7 @@ class TempDisplay(Static):
 
 class WeatherInfoDisplay(Static):
     def compose(self):
+        yield Label("Hello, world!", id="locationLabel")
         yield Button("Start", variant="success")
         yield Button("Stop", variant="warning")
         yield Button("Reset", variant="error")
