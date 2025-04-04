@@ -1,19 +1,93 @@
+Label {
+    text-align: center;
+}
+
+Input {
+    width: 50vw;
+
+    position: relative;
+    offset: 15vw 0;
+}
+
 #app-grid {
+    layout: vertical;
+}
+
+#top-side-container {
+    width: 80%;
+    height: 40%;
+
+    position: relative;
+    offset: 12.5% 0%;
+}
+
+#bottom-side-container {
+    width: 80%;
+    height: 60%;
+
+    position: relative;
+    offset: 12.5% 0;
+}
+
+#weather-results-container {
+
+    width: 80%;
+    height: 30%;
+
+    position: relative;
+    offset: 12.5% 40%;
+
     layout: grid;
     grid-size: 2 1;
+    grid-gutter: 0 3;
 
-    background: green;
+    background: rgb(60, 56, 54);
 }
 
-#left-side-container {
-    background: blue;
+#enter-town-label {
+    width: 100%;
+    height: 30%;
+
+    position: relative;
+    offset: 0 40%;
 }
 
-#right-side-container {}
+#weather-results-for-label {
+    width: 100%;
+    height: 25%;
 
-#locationLabel {
-    color: rgb(1, 158, 22);
+    position: relative;
+    offset: 0 100%;
+
+}
+
+#search-button {
+    width: 48vw;
+    height: 15%;
+
+    position: relative;
+    offset: 16vw 0;
+
+    text-align: center;
+}
+
+.data-read-containers {
 
     width: 100%;
-    height: 100%;
+}
+
+.data-read-container-titles {
+    text-align: center;
+
+    width: 100%;
+}
+
+.data-read-container-digits {
+    width: 100%;
+    height: 70%;
+
+    position: relative;
+
+    offset: 0 2vh;
+    text-align: center;
 }

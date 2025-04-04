@@ -7,13 +7,11 @@ from openmeteo_sdk.Variable import Variable
 om = openmeteo_requests.Client()
 base_geocoding_url = "https://geocoding-api.open-meteo.com/v1/search?"
 weatherParams = {
-    "current": ["temperature_2m"],
+    "current": ["temperature_2m", "relative_humidity_2m"],
     "temperature_unit": "fahrenheit",
 }
 
-def request_coords():
-    search_term = input("Please enter town name: ")
-
+def request_coords(search_term):
     url = f"{base_geocoding_url}name={search_term}&count=1&language=en&format=json"
     geocode_response = requests.get(url)
 
@@ -31,15 +29,14 @@ def request_coords():
     output = dict()
     output["latitude"] = location["latitude"]
     output["longitude"] = location["longitude"]
+    output["name"] = location["name"]
+    output["country"] = location.get("country")
 
     return output
 
-def get_Weather():
-    coordinates = request_coords()
-
+def get_Weather(coordinates):
     if coordinates is None:
-        print("Location not found!")
-        return
+        return "Location not found!"
     
     weatherParams["latitude"] = coordinates["latitude"]
     weatherParams["longitude"] = coordinates["longitude"]
@@ -50,7 +47,8 @@ def get_Weather():
     currentData = response.Current()
     currentVariables = list(map(lambda i: currentData.Variables(i), range(0, currentData.VariablesLength())))
     current_temp = next(filter(lambda x: x.Variable() == Variable.temperature and x.Altitude () == 2, currentVariables)).Value()
+    current_humidity = next(filter(lambda x: x.Variable() == Variable.relative_humidity and x.Altitude () == 2, currentVariables)).Value()
 
-    print(round(current_temp, 1))
+    result_temp = round(current_temp, 1)
 
-get_Weather()
+    return result_temp, current_humidity
